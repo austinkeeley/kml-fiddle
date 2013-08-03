@@ -6,7 +6,7 @@ class FiddlesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @fiddles }
+      format.json { render :json => @fiddles }
     end
   end
 
@@ -17,7 +17,7 @@ class FiddlesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @fiddle }
+      format.json { render :json => @fiddle }
     end
   end
 
@@ -45,10 +45,10 @@ class FiddlesController < ApplicationController
     respond_to do |format|
       if @fiddle.save
         format.html { redirect_to @fiddle, notice: 'Fiddle was successfully created.' }
-        format.json { render json: @fiddle, status: :created, location: @fiddle }
+        format.json { render :json => @fiddle, :status => :created, :location => @fiddle }
       else
-        format.html { render action: "new" }
-        format.json { render json: @fiddle.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @fiddle.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class FiddlesController < ApplicationController
 
     respond_to do |format|
       if @fiddle.update_attributes(params[:fiddle])
-        format.html { redirect_to @fiddle, notice: 'Fiddle was successfully updated.' }
+        format.html { redirect_to @fiddle, :notice => 'Fiddle was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @fiddle.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @fiddle.errors, :status => :unprocessable_entity }
       end
     end
   end
