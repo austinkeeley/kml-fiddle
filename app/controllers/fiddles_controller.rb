@@ -28,7 +28,7 @@ class FiddlesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @fiddle }
+      format.json { render :json => @fiddle }
     end
   end
 
@@ -44,7 +44,7 @@ class FiddlesController < ApplicationController
 
     respond_to do |format|
       if @fiddle.save
-        format.html { redirect_to @fiddle, notice: 'Fiddle was successfully created.' }
+        format.html { redirect_to @fiddle, :notice => 'Fiddle was successfully created.' }
         format.json { render :json => @fiddle, :status => :created, :location => @fiddle }
       else
         format.html { render :action => "new" }
