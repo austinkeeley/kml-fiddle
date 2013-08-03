@@ -1,4 +1,10 @@
 KmlFiddle::Application.routes.draw do
+  resources :fiddles
+
+  root :to => 'fiddles#index'
+
+  get 'about' => 'about#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
