@@ -32,23 +32,25 @@
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <!--<script type="text/javascript" src="/assets/javascripts/jquery.layout.latest.js"></script>-->
   <%= javascript_include_tag 'bootstrap.min.js' %>
-  <%= javascript_include_tag 'map.js' %>
+ 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx5pQF0swjCdcvskbex8CqJK6BQt42JC4&sensor=false"></script>
   <script type="text/javascript">
+  var map;
   function initialize() {
         var mapOptions = {
             center: new google.maps.LatLng(38.89, -77.03),
             zoom: 11,
             mapTypeId: google.maps.MapTypeId.TERRAIN
         };
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        add_kml_to_google_map('http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml', map);
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        //add_kml_to_google_map('http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml', map);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
 </script>
+ <%= javascript_include_tag 'map.js' %>
   </head>
 
   <body>
@@ -73,13 +75,14 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Switch Map</a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a role="menuitem">Google Maps</a></li>
-                  <li><a role="menuitem">Bing Maps</a></li>
-                  <li><a role="menuitem">Leaflet</a></li>
+                  <!--<li><a role="menuitem">Bing Maps</a></li>-->
+                  <!--<li><a role="menuitem">Leaflet</a></li>-->
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Samples</a>
                 <ul class="dropdown-menu" role="menu">
+                  <li><a role="menuitem">Washington Metro</a></li>
                   <li><a role="menuitem">D.C. Bike Trails</a></li>
                   <li><a role="menuitem">NFL Football Stadiums</a></li>
                   <li><a role="menuitem">World Coffee Production</a></li>
