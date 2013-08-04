@@ -21,10 +21,22 @@ class FiddlesController < ApplicationController
     end
   end
 
+  # Gets the raw KML for a fiddle
+  def get_raw
+    @fiddle = Fiddle.find(params[:id])
+    respond_to do |format|
+      format.xml { render :xml => @fiddle.content }
+    end
+  end
+
+
   # GET /fiddles/new
   # GET /fiddles/new.json
   def new
     @fiddle = Fiddle.new
+    @fiddle.content = '<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+</kml>'
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,9 +1,10 @@
 KmlFiddle::Application.routes.draw do
   resources :fiddles
 
-  root :to => 'fiddles#index'
-
+  root :to => 'fiddles#new'
   get 'about' => 'about#index'
+
+  match 'fiddles/get_raw/:id' => 'fiddles#get_raw'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
