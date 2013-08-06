@@ -31,7 +31,7 @@ $(document).ready(function() {
   				$('#fiddle_id').val(json.id);
   			
   			// map already declared
-  			var url = 'http://kmlfiddle.austinkeeley.com/fiddles/get_raw/' + $('#fiddle_id').val() + '.xml';
+  			var url = 'http://' + document.domain + '/fiddles/get_raw/' + $('#fiddle_id').val() + '.xml';
   			//var url = 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml';
   			add_kml_to_google_map(url, map);
 
@@ -44,8 +44,14 @@ $(document).ready(function() {
 	});
 });
 
+var layer;
+var i = 0;
 function add_kml_to_google_map(url, map) {
-	var layer = new google.maps.KmlLayer({
+	if (typeof layer !== 'undefined')
+    layer.setMap(null);
+  url = url + '?f=' + i;
+
+  var layer = new google.maps.KmlLayer({
 		url: url
 	});
 	layer.setMap(map);
