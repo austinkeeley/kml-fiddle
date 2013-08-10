@@ -59,6 +59,50 @@ function add_kml_to_google_map(url, map) {
 }
 
 
+/*
+ * toggles the lat/long tool being displayed
+ */
+var lat_long_tool_display = false;
+var lat, lng,
+  mouseMoveListener,
+  mouseClickListener;
+
+function toggle_lat_long_tool() {
+
+  var latitude_span = $("#latitude-span");
+  var longitude_span = $("#longitude-span");
+  var last_click_input = $("#last-click");
+  
+  if (!lat_long_tool_display) {
+    $('#new_fiddle').animate({
+      height: "80%"
+    }, 500);
+    $('#lat-long-container').css('display', 'inline');
+
+    mouseMoveListener = google.maps.event.addListener(map, 'mousemove', function(event) {
+      latitude_span.html(event.latLng.lat());
+      longitude_span.html(event.latLng.lng());
+    });
+
+    mouseClickListener = google.maps.event.addListener(map, 'click', function(event) {
+      last_click_input.val(event.latLng.lng() + ',' + event.latLng.lat() + ',0');
+    });
+
+  }
+  else {
+    $('#new_fiddle').animate({
+      height: "90%"
+    }, 500);
+    $('#lat-long-container').css('display', 'none');
+
+
+    google.maps.event.removeListener(mouseMoveListener);
+    google.maps.event.removeListener(mouseClickListener);
+  }
+
+  lat_long_tool_display = !lat_long_tool_display;
+
+}
 
 /*
  * Code for generating UUIDs
