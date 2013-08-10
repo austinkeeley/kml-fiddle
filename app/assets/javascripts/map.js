@@ -31,8 +31,11 @@ $(document).ready(function() {
   				$('#fiddle_id').val(json.id);
   			
   			// map already declared
-  			var url = 'http://' + document.domain + '/fiddles/get_raw/' + $('#fiddle_id').val() + '.xml';
-  			//var url = 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml';
+  			var url = 'http://' + document.domain + (location.port != 80 ? ':' + location.port : '' ) + '/fiddles/get_raw/' + $('#fiddle_id').val() + '.xml';
+  			console.log(url);
+        //var url = 'http://pool-173-73-165-139.washdc.fios.verizon.net:3000/fiddles/get_raw/63.xml';
+        
+        //var url = 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml';
   			add_kml_to_google_map(url, map);
 
 
@@ -45,14 +48,28 @@ $(document).ready(function() {
 });
 
 var layer;
-var i = 0;
 function add_kml_to_google_map(url, map) {
 	if (typeof layer !== 'undefined')
     layer.setMap(null);
-  url = url + '?f=' + i;
 
   var layer = new google.maps.KmlLayer({
 		url: url
 	});
 	layer.setMap(map);
+}
+
+
+
+/*
+ * Code for generating UUIDs
+ */
+function s4() {
+  return Math.floor((1 + Math.random()) * 0x10000)
+             .toString(16)
+             .substring(1);
+};
+
+function guid() {
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+         s4() + '-' + s4() + s4() + s4();
 }

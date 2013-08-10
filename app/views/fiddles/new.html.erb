@@ -1,10 +1,27 @@
 <div id="container" style="width: 100%; height: 100%;">
     <div id="map-canvas" style="float: left; width: 69%; border-right: 1px solid black;">
-
     </div>
     <div id="text-canvas" style="float: right; width: 30%; height: 100%; padding-top: 10px;">
         <%= render 'form' %>
         
+        <div id="lat-long-container" style="height: 10%;">
+        	<table>
+        		<tr>
+        			<td>Latitude: </td><td id="latitude-span"></td></tr>
+        		</tr>
+        		<tr>
+        			<td>Longitude: </td><td id="longitude-span"></td></tr>
+        		</tr>
+        		<tr>
+        			<td>Last click: </td><td><input type="text" id="last-click" /></td></tr>
+        		</tr>
+        	</table>
+
+
+        	
+        	
+        	
+        </div>
     </div>
 
 </div>
